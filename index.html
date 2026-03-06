@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LCLA: Language-Conditioned Latent Alignment for Vision-Language Navigation</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1 class="title">LCLA: <strong>L</strong>anguage-<strong>C</strong>onditioned <strong>L</strong>atent
+                <strong>A</strong>lignment for Vision-Language Navigation
+            </h1>
+
+            <div class="authors">
+                <span>Nitesh Subedi<sup>1</sup></span>
+                <span>Adam Haroon<sup>1</sup></span>
+                <span>Samuel Tetteh<sup>1</sup></span>
+                <span>Prajwal Koirala<sup>2</sup></span>
+                <span>Cody Fleming<sup>1</sup></span>
+                <span>Soumik Sarkar<sup>1</sup></span>
+            </div>
+
+            <div class="affiliations">
+                <span><sup>1</sup>Iowa State University</span> &nbsp;&nbsp;&nbsp;
+                <span><sup>2</sup>Cornell University</span>
+            </div>
+
+            <div class="links">
+                <a href="https://arxiv.org/abs/2602.07629" class="btn" target="_blank">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+                    </svg>
+                    Paper
+                </a>
+                <a href="https://github.com/nitesh-subedi/LCLA" class="btn" target="_blank">
+                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                    </svg>
+                    Code
+                </a>
+            </div>
+        </header>
+
+        <figure>
+            <img src="static/images/abstract_fig.png" alt="LCLA Abstract Figure">
+            <figcaption><strong>Overview of latent representation alignment with a frozen privileged policy.</strong> An
+                expert policy is first trained using privileged state observations and induces a task-relevant latent
+                representation sufficient for control. Rollouts collected from this policy provide supervision for
+                learning a lightweight adapter on top of a pre-trained vision–language model (VLM). The adapter aligns
+                image and text embeddings to the expert’s latent space, while the expert policy and action head remain
+                frozen. At deployment, actions are produced by mapping visual and language inputs through the VLM and
+                adapter into the expert-defined latent space and reusing the frozen action head.</figcaption>
+        </figure>
+
+        <section class="abstract">
+            <h2>Abstract</h2>
+            <p>We propose LCLA (Language-Conditioned Latent Alignment), a framework for vision-language navigation that
+                learns modular perception–action interfaces by aligning sensory observations to a latent representation
+                of an expert policy. The expert is first trained with privileged state information, inducing a latent
+                space sufficient for control, after which its latent interface and action head are frozen. A lightweight
+                adapter is then trained to map raw visual–language observations, via a frozen vision–language model,
+                into the expert's latent space, reducing the problem of visuomotor learning to supervised latent
+                alignment rather than end-to-end policy optimization. This decoupling enforces a stable contract between
+                perception and control, enabling expert behavior to be reused across sensing modalities and
+                environmental variations. We instantiate LCLA and evaluate it on a vision-language indoor navigation
+                task, where aligned latent spaces yield strong in-distribution performance and robust zero-shot
+                generalization to unseen environments, lighting conditions, and viewpoints while remaining lightweight
+                at inference time.</p>
+        </section>
+
+        <section class="video-container" style="text-align: center;">
+            <h2>Project Video</h2>
+            <video controls style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+                <source src="static/videos/LCLA.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </section>
+
+        <section>
+            <h2>Methodology - LCLA Adapter</h2>
+            <figure>
+                <img src="static/images/LCLAA.png"
+                    alt="Architecture of the Language Conditioned Latent Alignment Adapter (LCLAA)">
+                <figcaption><strong>Architecture of the Language Conditioned Latent Alignment Adapter (LCLAA).</strong>
+                    The model takes image patches and a text embedding as input. (1) Patches are first contextualized
+                    via self-attention. (2) A spatial bottleneck then uses text-conditioned importance scores to select
+                    relevant visual context (soft selection). (3) A query generation module combines the text embedding
+                    with learnable queries. (4) These queries attend to the selected visual context through stacked
+                    cross-attention blocks. (5) Finally, a gated fusion mechanism combines the processed queries with
+                    the original text residual to produce the aligned latent representation Z.</figcaption>
+            </figure>
+        </section>
+
+        <section>
+            <h2>Environments and Generalization</h2>
+            <figure>
+                <img src="static/images/Rooms_fig.png" alt="Evaluation Environments">
+                <figcaption>The left panels show two example indoor environments (Room A and Room B) with diverse
+                    furniture, objects, and layouts, illustrating the visual complexity encountered during training. The
+                    right panel summarizes the structured language prompt templates used for adapter training.
+                    Controlled linguistic variation and spatial relations encourage compositional understanding and
+                    support generalization to OOD objects, layouts, and relational configurations at evaluation time.
+                </figcaption>
+            </figure>
+        </section>
+
+        <section>
+            <h2>Robustness to Variations</h2>
+            <div class="two-col">
+                <figure>
+                    <img src="static/images/light_intensity.png" alt="Robustness to lighting variation">
+                    <figcaption>Out-of-distribution robustness to lighting variation. Performance degrades gracefully
+                        under extreme lighting conditions, indicating reduced reliance on low-level visual statistics.
+                    </figcaption>
+                </figure>
+                <figure>
+                    <img src="static/images/cam_heights.png" alt="Robustness to camera pose variation">
+                    <figcaption>Out-of-distribution robustness to camera pose variation. Performance remains stable
+                        across camera offsets, demonstrating robustness to moderate viewpoint changes.</figcaption>
+                </figure>
+            </div>
+        </section>
+
+        <footer>
+            <p>&copy; 2026 LCLA Project Authors. Template adapted for academic project pages.</p>
+        </footer>
+    </div>
+
+</body>
+
+</html>
