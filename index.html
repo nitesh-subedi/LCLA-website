@@ -4,135 +4,421 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LCLA: Language-Conditioned Latent Alignment for Vision-Language Navigation</title>
+    <title>LCLA: Language-Conditioned Latent Alignment for Vision-Language Navigation · CoRL 2026</title>
+    <meta name="description" content="LCLA decouples perception from control by aligning frozen vision-language embeddings to the latent space of a frozen privileged expert policy. CoRL 2026.">
+    <meta name="theme-color" content="#161617">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nitesh-subedi.github.io/LCLA-website/">
+    <meta property="og:title" content="LCLA: Language-Conditioned Latent Alignment for Vision-Language Navigation">
+    <meta property="og:description" content="Align, don't retrain. Zero-shot sim2real vision-language navigation on a real TurtleBot. CoRL 2026.">
+    <meta property="og:image" content="https://nitesh-subedi.github.io/LCLA-website/static/images/abstract_fig.png">
+    <meta name="twitter:card" content="summary_large_image">
     <link rel="stylesheet" href="static/css/style.css">
 </head>
 
 <body>
 
-    <div class="container">
-        <header>
-            <h1 class="title">LCLA: <strong>L</strong>anguage-<strong>C</strong>onditioned <strong>L</strong>atent
-                <strong>A</strong>lignment for Vision-Language Navigation
-            </h1>
+    <header class="nav">
+        <nav>
+            <a class="nav-logo" href="#top">LCLA</a>
+            <ul>
+                <li><a href="#method">Method</a></li>
+                <li><a href="#results">Results</a></li>
+                <li><a href="#real-world">Real World</a></li>
+                <li><a href="#bibtex">BibTeX</a></li>
+            </ul>
+        </nav>
+    </header>
 
-            <div class="authors">
-                <span>Nitesh Subedi<sup>1</sup></span>
-                <span>Adam Haroon<sup>1</sup></span>
-                <span>Samuel Tetteh<sup>1</sup></span>
-                <span>Prajwal Koirala<sup>2</sup></span>
-                <span>Cody Fleming<sup>1</sup></span>
-                <span>Soumik Sarkar<sup>1</sup></span>
+    <main id="top">
+        <!-- ── Hero ── -->
+        <section class="hero">
+            <div class="hero-glow" aria-hidden="true"></div>
+            <div class="hero-content">
+                <p class="venue-pill fade-up">CoRL 2026</p>
+                <h1 class="hero-title fade-up delay-1"><span class="grad">LCLA</span></h1>
+                <p class="hero-subtitle fade-up delay-2"><strong>L</strong>anguage-<strong>C</strong>onditioned
+                    <strong>L</strong>atent <strong>A</strong>lignment for Vision-Language Navigation</p>
+
+                <div class="authors fade-up delay-2">
+                    <span>Nitesh Subedi<sup>1</sup></span>
+                    <span>Adam Haroon<sup>1</sup></span>
+                    <span>Samuel Tetteh<sup>1</sup></span>
+                    <span>Prajwal Koirala<sup>2</sup></span>
+                    <span>Cody Fleming<sup>1</sup></span>
+                    <span>Soumik Sarkar<sup>1</sup></span>
+                </div>
+                <div class="affiliations fade-up delay-2">
+                    <span><sup>1</sup>Iowa State University</span>
+                    <span><sup>2</sup>Cornell University</span>
+                </div>
+
+                <div class="links fade-up delay-3">
+                    <a href="https://arxiv.org/abs/2602.07629" class="btn" target="_blank" rel="noopener">
+                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
+                        </svg>
+                        Paper
+                    </a>
+                    <a href="https://github.com/nitesh-subedi/LCLA" class="btn btn-ghost" target="_blank" rel="noopener">
+                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                        </svg>
+                        Code
+                    </a>
+                    <a href="#video" class="btn btn-ghost">
+                        <svg width="18" height="18" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M8 5v14l11-7z" />
+                        </svg>
+                        Video
+                    </a>
+                </div>
             </div>
+        </section>
 
-            <div class="affiliations">
-                <span><sup>1</sup>Iowa State University</span> &nbsp;&nbsp;&nbsp;
-                <span><sup>2</sup>Cornell University</span>
+        <!-- ── Key results ── -->
+        <section class="highlights" aria-label="Key results">
+            <div class="highlight">
+                <span class="highlight-num">70.7%</span>
+                <span class="highlight-label">Zero-shot real-world success on a TurtleBot</span>
+                <span class="highlight-ref">vs. 60.9% LeLaN · 40.2% behavior cloning</span>
             </div>
-
-            <div class="links">
-                <a href="https://arxiv.org/abs/2602.07629" class="btn" target="_blank">
-                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                        <path
-                            d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
-                    </svg>
-                    Paper
-                </a>
-                <a href="https://github.com/nitesh-subedi/LCLA" class="btn" target="_blank">
-                    <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                        <path
-                            d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                    </svg>
-                    Code
-                </a>
+            <div class="highlight">
+                <span class="highlight-num">80.5%</span>
+                <span class="highlight-label">Success in an unseen simulated room</span>
+                <span class="highlight-ref">vs. 49.3% behavior cloning</span>
             </div>
-        </header>
-
-        <figure>
-            <img src="static/images/abstract_fig.png" alt="LCLA Abstract Figure">
-            <figcaption><strong>Overview of latent representation alignment with a frozen privileged policy.</strong> An
-                expert policy is first trained using privileged state observations and induces a task-relevant latent
-                representation sufficient for control. Rollouts collected from this policy provide supervision for
-                learning a lightweight adapter on top of a pre-trained vision–language model (VLM). The adapter aligns
-                image and text embeddings to the expert’s latent space, while the expert policy and action head remain
-                frozen. At deployment, actions are produced by mapping visual and language inputs through the VLM and
-                adapter into the expert-defined latent space and reusing the frozen action head.</figcaption>
-        </figure>
-
-        <section class="abstract">
-            <h2>Abstract</h2>
-            <p>We propose LCLA (Language-Conditioned Latent Alignment), a framework for vision-language navigation that
-                learns modular perception–action interfaces by aligning sensory observations to a latent representation
-                of an expert policy. The expert is first trained with privileged state information, inducing a latent
-                space sufficient for control, after which its latent interface and action head are frozen. A lightweight
-                adapter is then trained to map raw visual–language observations, via a frozen vision–language model,
-                into the expert's latent space, reducing the problem of visuomotor learning to supervised latent
-                alignment rather than end-to-end policy optimization. This decoupling enforces a stable contract between
-                perception and control, enabling expert behavior to be reused across sensing modalities and
-                environmental variations. We instantiate LCLA and evaluate it on a vision-language indoor navigation
-                task, where aligned latent spaces yield strong in-distribution performance and robust zero-shot
-                generalization to unseen environments, lighting conditions, and viewpoints while remaining lightweight
-                at inference time.</p>
+            <div class="highlight">
+                <span class="highlight-num">3×</span>
+                <span class="highlight-label">Fewer collisions out of distribution</span>
+                <span class="highlight-ref">15.5% vs. 45.0% behavior cloning</span>
+            </div>
+            <div class="highlight">
+                <span class="highlight-num">Zero</span>
+                <span class="highlight-label">Real-world fine-tuning or calibration</span>
+                <span class="highlight-ref">trained entirely in Isaac Sim</span>
+            </div>
         </section>
 
-        <section class="video-container" style="text-align: center;">
-            <h2>Project Video</h2>
-            <video controls style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                <source src="static/videos/LCLA.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </section>
-
-        <section>
-            <h2>Methodology - LCLA Adapter</h2>
-            <figure>
-                <img src="static/images/LCLAA.png"
-                    alt="Architecture of the Language Conditioned Latent Alignment Adapter (LCLAA)">
-                <figcaption><strong>Architecture of the Language Conditioned Latent Alignment Adapter (LCLAA).</strong>
-                    The model takes image patches and a text embedding as input. (1) Patches are first contextualized
-                    via self-attention. (2) A spatial bottleneck then uses text-conditioned importance scores to select
-                    relevant visual context (soft selection). (3) A query generation module combines the text embedding
-                    with learnable queries. (4) These queries attend to the selected visual context through stacked
-                    cross-attention blocks. (5) Finally, a gated fusion mechanism combines the processed queries with
-                    the original text residual to produce the aligned latent representation Z.</figcaption>
-            </figure>
-        </section>
-
-        <section>
-            <h2>Environments and Generalization</h2>
-            <figure>
-                <img src="static/images/Rooms_fig.png" alt="Evaluation Environments">
-                <figcaption>The left panels show two example indoor environments (Room A and Room B) with diverse
-                    furniture, objects, and layouts, illustrating the visual complexity encountered during training. The
-                    right panel summarizes the structured language prompt templates used for adapter training.
-                    Controlled linguistic variation and spatial relations encourage compositional understanding and
-                    support generalization to OOD objects, layouts, and relational configurations at evaluation time.
-                </figcaption>
-            </figure>
-        </section>
-
-        <section>
-            <h2>Robustness to Variations</h2>
-            <div class="two-col">
-                <figure>
-                    <img src="static/images/light_intensity.png" alt="Robustness to lighting variation">
-                    <figcaption>Out-of-distribution robustness to lighting variation. Performance degrades gracefully
-                        under extreme lighting conditions, indicating reduced reliance on low-level visual statistics.
-                    </figcaption>
+        <!-- ── Overview ── -->
+        <section class="section paper">
+            <div class="inner">
+                <p class="eyebrow">Overview</p>
+                <h2 class="section-title">Align, don’t retrain.</h2>
+                <p class="lede">A privileged expert learns <em>how</em> to navigate from geometric state. LCLA then teaches
+                    a lightweight adapter to map what a robot <em>sees</em> and is <em>told</em> into that expert’s latent
+                    space, so the expert’s frozen controller can be reused directly from pixels and language.</p>
+                <figure class="card-figure reveal-zoom">
+                    <img src="static/images/abstract_fig.png" alt="Overview of LCLA: VLM features are aligned to the latent space of a trained privileged policy by training only a lightweight adapter" loading="lazy" decoding="async">
                 </figure>
-                <figure>
-                    <img src="static/images/cam_heights.png" alt="Robustness to camera pose variation">
-                    <figcaption>Out-of-distribution robustness to camera pose variation. Performance remains stable
-                        across camera offsets, demonstrating robustness to moderate viewpoint changes.</figcaption>
+                <p class="caption"><strong>Overview of LCLA.</strong> A privileged expert policy trained from geometric
+                    state observations induces a task-relevant latent representation z ∈ ℝ<sup>D</sup>. A lightweight
+                    adapter aligns frozen vision-language embeddings to this latent space while keeping the expert policy
+                    frozen. During deployment, visual and language inputs are mapped into the expert latent space and
+                    passed through the frozen action head for control.</p>
+            </div>
+        </section>
+
+        <!-- ── Abstract ── -->
+        <section class="section">
+            <div class="inner narrow">
+                <p class="eyebrow">Abstract</p>
+                <p class="abstract">We propose LCLA (Language-Conditioned Latent Alignment), a framework for
+                    vision-language navigation that decouples perception from control by aligning visual-language
+                    observations to the latent representation of a frozen privileged expert policy. A lightweight adapter
+                    maps frozen vision-language embeddings into the expert latent space using supervised latent alignment
+                    rather than end-to-end policy optimization, enabling expert navigation behavior to be reused across
+                    perception backbones and environmental variations. We evaluate LCLA across in-distribution
+                    simulation, zero-shot out-of-distribution environments, robustness perturbations, and direct
+                    real-world deployment on a TurtleBot platform, where it improves OOD success rate from 49.3% to 80.5%
+                    and reduces collision rates from 45.0% to 15.5% relative to direct behavior cloning. Without any
+                    real-world fine-tuning or calibration, LCLA attains 70.7% real-world success, compared to 60.9% for a
+                    navigation-pretrained baseline and 40.2% for direct behavior cloning, demonstrating robust and
+                    efficient sim2real transfer while remaining lightweight at inference time.</p>
+            </div>
+        </section>
+
+        <!-- ── Video ── -->
+        <section class="section dark" id="video">
+            <div class="inner">
+                <p class="eyebrow">Video</p>
+                <h2 class="section-title">See it in action.</h2>
+                <div class="video-frame reveal-zoom">
+                    <video controls preload="metadata" playsinline>
+                        <source src="static/videos/LCLA.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Method ── -->
+        <section class="section" id="method">
+            <div class="inner">
+                <p class="eyebrow">Method</p>
+                <h2 class="section-title">Three stages. One frozen controller.</h2>
+                <div class="steps">
+                    <article class="step">
+                        <span class="step-num">1</span>
+                        <h3>Train a privileged expert.</h3>
+                        <p>A PPO policy learns navigation from compact geometric state: goal direction, obstacle
+                            distances, and relative pose. Its encoder and action head are then frozen.</p>
+                    </article>
+                    <article class="step">
+                        <span class="step-num">2</span>
+                        <h3>Align perception to its latent.</h3>
+                        <p>Expert rollouts give (image, instruction, latent) tuples. A lightweight adapter on a frozen
+                            SigLIP2 backbone learns to predict the expert latent. This is supervised alignment, with
+                            no reinforcement learning.</p>
+                    </article>
+                    <article class="step">
+                        <span class="step-num">3</span>
+                        <h3>Deploy from pixels and language.</h3>
+                        <p>At test time the robot has no privileged state. RGB and an instruction map through the
+                            VLM and adapter into the expert latent, and the frozen action head produces the controls.</p>
+                    </article>
+                </div>
+
+                <figure class="card-figure reveal-zoom">
+                    <img src="static/images/LCLAA.png" alt="Architecture of the Language Conditioned Latent Alignment Adapter (LCLAA)" loading="lazy" decoding="async">
+                </figure>
+                <p class="caption"><strong>LCLAA: the Language-Conditioned Latent Alignment Adapter.</strong> Image
+                    patches are contextualized by self-attention, a text-conditioned spatial bottleneck softly selects
+                    task-relevant regions, learnable text-conditioned queries attend to that context through stacked
+                    cross-attention, and a gated fusion with the text residual produces the aligned latent ẑ.</p>
+
+                <div class="objective">
+                    <div>
+                        <h3>Training objective</h3>
+                        <p>Latent MSE anchors absolute error, symmetric InfoNCE (τ = 0.07) aligns relational structure,
+                            and an action-consistency term penalizes latent errors by their effect through the frozen
+                            controller.</p>
+                    </div>
+                    <div class="formula" aria-label="Loss equals lambda one times contrastive loss plus one minus lambda one times latent MSE plus lambda two times action consistency">
+                        𝓛 = λ<sub>1</sub>𝓛<sub>contrast</sub> + (1 − λ<sub>1</sub>)‖ẑ − z‖² + λ<sub>2</sub>‖π<sup>a</sup>(ẑ) − π<sup>a</sup>(z)‖²
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── Environments ── -->
+        <section class="section paper">
+            <div class="inner">
+                <p class="eyebrow">Environments</p>
+                <h2 class="section-title">Trained in one room. Tested in another.</h2>
+                <p class="lede">Room A (18 targets) is the only training environment. Room B is held out entirely, with
+                    novel object categories, layouts, textures, and lighting. Structured prompts with colors and spatial
+                    relations push the adapter toward compositional grounding.</p>
+                <figure class="card-figure reveal-zoom">
+                    <img src="static/images/rooms_fig.jpg" alt="Room A and Room B simulation environments with prompt template families" loading="lazy" decoding="async">
                 </figure>
             </div>
         </section>
 
-        <footer>
-            <p>&copy; 2026 LCLA Project Authors. Template adapted for academic project pages.</p>
-        </footer>
-    </div>
+        <!-- ── Results ── -->
+        <section class="section" id="results">
+            <div class="inner">
+                <p class="eyebrow">Results</p>
+                <h2 class="section-title">Strong in simulation. Stronger where it matters.</h2>
+                <p class="lede">LCLA reaches 90.4% success in-distribution, within 7 points of the privileged expert,
+                    and keeps 80.5% in the unseen room. Baselines cluster near 60% with 3–4× more collisions, even
+                    LeLaN with a ~14× larger navigation-pretrained backbone.</p>
 
+                <div class="table-wrap">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th rowspan="2">Method</th>
+                                <th colspan="3">Room A (ID)</th>
+                                <th colspan="3">Room B (OOD)</th>
+                                <th colspan="2">Real World</th>
+                                <th rowspan="2">Params<br><span>train / total</span></th>
+                                <th rowspan="2">Time<br><span>ms</span></th>
+                            </tr>
+                            <tr>
+                                <th>SR</th><th>SPL</th><th>Coll.</th>
+                                <th>SR</th><th>SPL</th><th>Coll.</th>
+                                <th>SR</th><th>SPL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="muted-row">
+                                <td>Privileged PPO <span class="tag">upper bound</span></td>
+                                <td>97.7</td><td>0.977</td><td>2.3</td>
+                                <td>–</td><td>–</td><td>–</td>
+                                <td>–</td><td>–</td>
+                                <td>0.49M / 0.49M</td><td>5.0</td>
+                            </tr>
+                            <tr>
+                                <td>LeLaN</td>
+                                <td>61.1</td><td>0.606</td><td>33.7</td>
+                                <td>54.8</td><td>0.548</td><td>41.1</td>
+                                <td>60.9</td><td>–</td>
+                                <td>30.5M / 181.9M</td><td>135.7</td>
+                            </tr>
+                            <tr>
+                                <td>LCBC</td>
+                                <td>60.1</td><td>0.591</td><td>39.7</td>
+                                <td>49.3</td><td>0.491</td><td>45.0</td>
+                                <td>40.2</td><td>0.297</td>
+                                <td>13.7M / 99.7M</td><td>75.4</td>
+                            </tr>
+                            <tr>
+                                <td>PELA</td>
+                                <td>62.5</td><td>0.616</td><td>37.5</td>
+                                <td>57.6</td><td>0.576</td><td>40.9</td>
+                                <td>–</td><td>–</td>
+                                <td>1.2M / 87.2M</td><td>69.1</td>
+                            </tr>
+                            <tr class="ours">
+                                <td>LCLA <span class="tag">ours</span></td>
+                                <td>90.4</td><td>0.903</td><td>9.6</td>
+                                <td>80.5</td><td>0.804</td><td>15.5</td>
+                                <td>70.7</td><td>0.522</td>
+                                <td>13.0M / 99.0M</td><td>74.2</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <p class="caption">SR = success rate (%), SPL = success weighted by path length, Coll. = collision rate
+                    (%). Real-world results are over 82 trials per method with no fine-tuning; real-world SPL is a proxy
+                    from executed trajectory length. PELA is evaluated in simulation only. LCBC = language-conditioned
+                    behavior cloning (same encoder, predicts actions directly); PELA = pooled-embedding latent alignment
+                    (no token-level language conditioning).</p>
+            </div>
+        </section>
+
+        <!-- ── Real world ── -->
+        <section class="section dark" id="real-world">
+            <div class="inner">
+                <p class="eyebrow new">New in the CoRL version</p>
+                <h2 class="section-title">Straight from simulation to a real robot.</h2>
+                <p class="lede">Every policy is deployed directly on a TurtleBot using only onboard RGB and a language
+                    instruction, with no real-world fine-tuning, calibration, or domain adaptation. Each scene holds the goal
+                    and a distractor, so the robot has to ground the instruction rather than drive to the most salient
+                    object.</p>
+
+                <div class="stat-row">
+                    <div><span class="big grad">70.7%</span><span>LCLA success</span></div>
+                    <div><span class="big">60.9%</span><span>LeLaN</span></div>
+                    <div><span class="big">40.2%</span><span>Behavior cloning</span></div>
+                    <div><span class="big">82</span><span>trials per method</span></div>
+                </div>
+
+                <figure class="card-figure light reveal-zoom">
+                    <img src="static/images/real_world_setup.jpg" alt="Real-world evaluation setup: top-down arena layout with six start positions and six object locations, onboard RGB observations, and the real test objects" loading="lazy" decoding="async">
+                </figure>
+                <p class="caption">A 4.65 m × 4.50 m arena with six start positions (1–6) and six object locations
+                    (a–f). Positions 1–3 share background context; 4–6 introduce different backgrounds and clutter. Each
+                    configuration is tested with the target on the left and right of the camera frame.</p>
+
+                <div class="grid-2">
+                    <figure class="tile-figure reveal-zoom">
+                        <img src="static/images/real_world_attention.jpg" alt="Adapter attention map on a real onboard image for the instruction Navigate to the black chair" loading="lazy" decoding="async">
+                        <figcaption><strong>“Navigate to the black chair.”</strong> The adapter’s attention concentrates
+                            on the black folding chair rather than the red chair distractor beside it.</figcaption>
+                    </figure>
+                    <figure class="tile-figure light reveal-zoom">
+                        <img src="static/images/real_success_by_location.png" alt="Heatmap of real-world success rate by start location for LCLA, LeLaN, and LCBC" loading="lazy" decoding="async">
+                        <figcaption><strong>Consistent across the arena.</strong> LCLA stays reliable across start
+                            positions and background regimes, while behavior cloning fails badly at several locations.</figcaption>
+                    </figure>
+                </div>
+
+                <figure class="card-figure light reveal-zoom">
+                    <img src="static/images/real_success_by_object.png" alt="Bar chart of real-world success rate by target object for LCLA, LeLaN, and LCBC" loading="lazy" decoding="async">
+                </figure>
+                <p class="caption">Real-world success rate by target object. LCLA matches or exceeds both baselines on
+                    every object, with its largest margin on the paired <em>red chair + black chair</em> scenes, where the
+                    instruction alone decides the goal.</p>
+            </div>
+        </section>
+
+        <!-- ── Ablations & robustness ── -->
+        <section class="section">
+            <div class="inner">
+                <p class="eyebrow">Analysis</p>
+                <h2 class="section-title">What makes it work.</h2>
+
+                <div class="grid-2 cards">
+                    <article class="card">
+                        <h3>Both ingredients matter.</h3>
+                        <p>A controlled 2 × 2 study crosses perception (pooled vs. language-conditioned) with prediction
+                            target (actions vs. expert latent). Combining them is worth more than the sum of the parts.</p>
+                        <table class="mini">
+                            <thead><tr><th>Perception</th><th>Target</th><th>Room A</th><th>Room B</th></tr></thead>
+                            <tbody>
+                                <tr><td>Pooled</td><td>Action</td><td>49.0</td><td>19.4</td></tr>
+                                <tr><td>Lang.-cond.</td><td>Action</td><td>60.1</td><td>49.3</td></tr>
+                                <tr><td>Pooled</td><td>Latent</td><td>62.5</td><td>57.6</td></tr>
+                                <tr class="ours"><td>Lang.-cond.</td><td>Latent</td><td>90.4</td><td>80.5</td></tr>
+                            </tbody>
+                        </table>
+                        <p class="note">Success rate (%). Interaction effect: +16.8 points.</p>
+                    </article>
+                    <article class="card">
+                        <h3>Every loss term earns its place.</h3>
+                        <p>Latent MSE alone is not enough. Action consistency and InfoNCE each help a little; together
+                            they unlock the full result.</p>
+                        <table class="mini">
+                            <thead><tr><th>Objective</th><th>SR (%)</th><th>SPL</th></tr></thead>
+                            <tbody>
+                                <tr><td>Latent MSE</td><td>49.0</td><td>0.486</td></tr>
+                                <tr><td>+ InfoNCE</td><td>51.0</td><td>0.505</td></tr>
+                                <tr><td>+ Action consistency</td><td>57.0</td><td>0.567</td></tr>
+                                <tr class="ours"><td>Full objective</td><td>90.4</td><td>0.903</td></tr>
+                            </tbody>
+                        </table>
+                        <p class="note">Room A. Matching the expert latent size (d<sub>z</sub> = 256) is also critical:
+                            128 and 512 drop to ~47% in Room B.</p>
+                    </article>
+                </div>
+
+                <h3 class="sub-title">Robust to lighting and viewpoint.</h3>
+                <p class="lede small">Under illumination changes and ±0.2 m camera-height shifts in Room B, performance
+                    degrades gradually rather than catastrophically. Stronger VLM backbones help: with SigLIP2, the worst
+                    case is 70.9% and the average is 79.0%, vs. 53.8% / 59.3% for CLIP.</p>
+                <div class="grid-2 stack">
+                    <figure class="tile-figure light reveal-zoom">
+                        <img src="static/images/light_intensity.png" alt="Room B observations under very high, high, default, low, and very low lighting" loading="lazy" decoding="async">
+                        <figcaption><strong>Illumination.</strong> Very high to very low global lighting in the unseen
+                            room.</figcaption>
+                    </figure>
+                    <figure class="tile-figure light reveal-zoom">
+                        <img src="static/images/cam_heights.png" alt="Room B observations with the camera lowered and raised by 0.2 meters" loading="lazy" decoding="async">
+                        <figcaption><strong>Camera height.</strong> Lowered and raised by 0.2 m, changing floor area,
+                            object scale, and perspective.</figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- ── BibTeX ── -->
+        <section class="section paper" id="bibtex">
+            <div class="inner narrow">
+                <p class="eyebrow">Citation</p>
+                <h2 class="section-title">BibTeX</h2>
+                <div class="bibtex">
+                    <button class="copy-btn" type="button" data-copy="bibtex-code">Copy</button>
+<pre><code id="bibtex-code">@inproceedings{subedi2026lcla,
+  title     = {LCLA: Language-Conditioned Latent Alignment for Vision-Language Navigation},
+  author    = {Subedi, Nitesh and Haroon, Adam and Tetteh, Samuel and Koirala, Prajwal and Fleming, Cody and Sarkar, Soumik},
+  booktitle = {Conference on Robot Learning (CoRL)},
+  year      = {2026}
+}</code></pre>
+                </div>
+                <p class="ack">This work is jointly funded by the NSF–USDA COALESCE program (NSF award #1954556; USDA award
+                    #2021-6702134418), NSF CNS-2313104, and the Iowa Space Grant Consortium under NASA Award
+                    No. 80NSSC25M7126.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 LCLA Project Authors · <a href="https://nitesh-subedi.github.io/">Nitesh Subedi</a> · <a href="https://github.com/nitesh-subedi/LCLA" target="_blank" rel="noopener">Code</a></p>
+    </footer>
+
+    <script src="static/js/main.js" defer></script>
 </body>
 
 </html>
